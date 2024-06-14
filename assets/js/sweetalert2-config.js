@@ -6,13 +6,13 @@ $(document).ready(function() {
 		const nama 	= $(this).data('nama');
 
 		Swal.fire({
-		  title: 'Are you sure?',
-		  text: "Want to delete " + nama,
+		  title: 'Apakah kamu yakin?',
+		  text: "ingin menghapus " + nama,
 		  icon: 'warning',
 		  showCancelButton: true,
 		  cancelButtonColor: '#3085d6',
 		  confirmButtonColor: '#d33',
-		  confirmButtonText: 'Delete Data!'
+		  confirmButtonText: 'Hapus Data!'
 		}).then((result) => {
 		  if (result.value) {
 		    document.location.href = href;

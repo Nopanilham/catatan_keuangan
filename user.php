@@ -5,17 +5,17 @@
   $jabatan = mysqli_query($conn, "SELECT * FROM jabatan");
   if (isset($_POST['btnEditUser'])) {
     if (editUser($_POST) > 0) {
-      setAlert("User has been changed", "Successfully changed", "success");
+      setAlert("User berhasil Diubah", "berhasil Mengubah Data", "success");
       header("Location: user.php");
     } else {
-      setAlert("User failed to change!", "Failed change!", "error");
+      setAlert("User gagal diubah!", "Gagal Mengubah Data!", "Failed");
       header("Location: user.php");
     }
   }
 
   if (isset($_POST['btnTambahUser'])) {
     if (addUser($_POST) > 0) {
-      setAlert("User has been added", "Successfully added", "success");
+      setAlert("User Berhasil Ditambahkan", "Berhasil Menambahkan Data", "success");
       header("Location: user.php");
     }
   }
@@ -70,7 +70,7 @@
                         <input type="password" minlength="6" name="password" id="password" class="form-control" required>
                       </div>
                       <div class="form-group">
-                        <label for="password_verify">Password Verify</label>
+                        <label for="password_verify">Konfirmasi Password </label>
                         <input type="password" minlength="6" name="password_verify" id="password_verify" class="form-control" required>
                       </div>
                       <div class="form-group">
@@ -85,8 +85,8 @@
                       </div>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-fw fa-times"></i> Close</button>
-                      <button type="submit" class="btn btn-primary" name="btnTambahUser"><i class="fas fa-fw fa-save"></i> Save</button>
+                      <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-fw fa-times"></i> Batal</button>
+                      <button type="submit" class="btn btn-primary" name="btnTambahUser"><i class="fas fa-fw fa-save"></i> Tambah</button>
                     </div>
                   </div>
                 </form>
@@ -165,8 +165,8 @@
                                     </div>
                                   </div>
                                   <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-fw fa-times"></i> Close</button>
-                                    <button type="submit" class="btn btn-primary" name="btnEditUser"><i class="fas fa-fw fa-save"></i> Save</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-fw fa-times"></i> Batal</button>
+                                    <button type="submit" class="btn btn-primary" name="btnEditUser"><i class="fas fa-fw fa-save"></i> Ubah</button>
                                   </div>
                                 </div>
                               </form>
@@ -188,11 +188,7 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2020 By Andri Firman Saputra.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 1.0.0
-    </div>
+    <strong> &copy; UAS PEMROGRAMAN WEBSITE KELOMPOK 5.</strong>
   </footer>
 
 </div>

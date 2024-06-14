@@ -1,18 +1,17 @@
 <?php 
   $dataUser = dataUser();
+  $jml_pemasukan = mysqli_fetch_assoc(mysqli_query($conn, "SELECT sum(jumlah_pemasukan) as jml_pemasukan FROM pemasukan"));
+  $jml_pemasukan = $jml_pemasukan['jml_pemasukan'];
+
   $jml_pengeluaran = mysqli_fetch_assoc(mysqli_query($conn, "SELECT sum(jumlah_pengeluaran) as jml_pengeluaran FROM pengeluaran"));
   $jml_pengeluaran = $jml_pengeluaran['jml_pengeluaran'];
-
-  $jml_uang_kas = mysqli_fetch_assoc(mysqli_query($conn, "SELECT sum(minggu_ke_1 + minggu_ke_2 + minggu_ke_3 + minggu_ke_4) as jml_uang_kas FROM uang_kas"));
-  $jml_uang_kas = $jml_uang_kas['jml_uang_kas'];
 ?>
 <!-- Main Sidebar Container -->
-<aside class="main-sidebar sidebar-dark-primary elevation-4">
+<aside class="main-sidebar sidebar-dark-primary elevation-4" style="background-color: #1F6357">
   <!-- Brand Logo -->
   <a href="index.php" class="brand-link">
-    <img src="assets/img/img_properties/logo.png" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
-    <span class="brand-text font-weight-light">UANG KAS</span>
-  </a>
+    <center><span class="brand-text font-weight-light">CATATAN KEUANGAN</span>
+  </a></center>
 
   <!-- Sidebar -->
   <div class="sidebar">
@@ -28,7 +27,7 @@
           <div class="bg-success nav-link text-white">
             <i class="nav-icon fas fa-money-bill-wave"></i>
             <p>
-              Sisa Uang: <?= number_format($jml_uang_kas - $jml_pengeluaran); ?>
+              Sisa Uang: <?= number_format($jml_pemasukan - $jml_pengeluaran); ?>
             </p>
           </div>
         </li>
@@ -58,41 +57,17 @@
             </a>
           </li>
         <?php endif ?>
+        
         <li class="nav-item">
-          <a href="siswa.php" class="nav-link">
-            <i class="fas fa-user-tie nav-icon"></i>
-            <p>Siswa</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="uang_kas.php" class="nav-link">
+          <a href="pemasukan.php" class="nav-link">
             <i class="fas fa-dollar-sign nav-icon"></i>
-            <p>Uang Kas</p>
+            <p>Pemasukan</p>
           </a>
         </li>
         <li class="nav-item">
           <a href="pengeluaran.php" class="nav-link">
             <i class="fas fa-sign-out-alt nav-icon"></i>
             <p>Pengeluaran</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="laporan.php" class="nav-link">
-            <i class="fas fa-file nav-icon"></i>
-            <p>Laporan</p>
-          </a>
-        </li>
-        <div class="dropdown-divider"></div>
-        <li class="nav-item">
-          <a href="riwayat.php" class="nav-link">
-            <i class="fas fa-stopwatch nav-icon"></i>
-            <p>Riwayat Uang Kas</p>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a href="riwayat_pengeluaran.php" class="nav-link">
-            <i class="fas fa-stopwatch nav-icon"></i>
-            <p>Riwayat Pengeluaran</p>
           </a>
         </li>
       </ul>

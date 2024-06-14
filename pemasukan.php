@@ -1,29 +1,28 @@
 <?php 
   require 'connection.php';
   checkLogin();
-  $pengeluaran = mysqli_query($conn, "SELECT * FROM pengeluaran INNER JOIN user ON pengeluaran.id_user = user.id_user");
+  $pemasukan = mysqli_query($conn, "SELECT * FROM pemasukan INNER JOIN user ON pemasukan.id_user = user.id_user");
 
-  if (isset($_POST['btnAddPengeluaran'])) {
-    if (addPengeluaran($_POST) > 0) {
-      setAlert("Pengeluaran Berhasil Ditambahkan", "Berhasil Menambahkan Data", "success");
-      header("Location: pengeluaran.php");
+  if (isset($_POST['btnAddPemasukan'])) {
+    if (addPemasukan($_POST) > 0) {
+      setAlert("Pemasukan Berhasil Ditambahkan", "Berhasil Menambahkan Data", "success");
+      header("Location: pemasukan.php");
     }
   }
 
-  if (isset($_POST['btnEditPengeluaran'])) {
-    if (editPengeluaran($_POST) > 0) {
-      setAlert("Pengeluaran Berhasil Diubah", "Berhasil Mengubah Data", "success");
-      header("Location: pengeluaran.php");
+  if (isset($_POST['btnEditPemasukan'])) {
+    if (editPemasukan($_POST) > 0) {
+      setAlert("Pemasukan Berhasil Diubah", "Berhasil Mengubah Data", "success");
+      header("Location: pemasukan.php");
     }
   }
-
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
   <?php include 'include/css.php'; ?>
-  <title>Pengeluaran</title>
+  <title>Pemasukan</title>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -39,26 +38,26 @@
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm">
-            <h1 class="m-0 text-dark">Pengeluaran</h1>
+            <h1 class="m-0 text-dark">Pemasukan</h1>
           </div><!-- /.col -->
           <div class="col-sm text-right">
             <?php if ($_SESSION['id_jabatan'] !== '3'): ?>
-              <button class="btn btn-primary" data-toggle="modal" data-target="#tambahPengeluaranModal"><i class="fas fa-fw fa-plus"></i> Tambah Pengeluaran</button>
+              <button class="btn btn-primary" data-toggle="modal" data-target="#tambahPemasukanModal"><i class="fas fa-fw fa-plus"></i> Tambah Pemasukan</button>
               <!-- Modal -->
-              <div class="modal fade text-left" id="tambahPengeluaranModal" tabindex="-1" role="dialog" aria-labelledby="tambahPengeluaranModalLabel" aria-hidden="true">
+              <div class="modal fade text-left" id="tambahPemasukanModal" tabindex="-1" role="dialog" aria-labelledby="tambahPemasukanModalLabel" aria-hidden="true">
                 <div class="modal-dialog" role="document">
                   <form method="post">
                     <div class="modal-content">
                       <div class="modal-header">
-                        <h5 class="modal-title" id="tambahPengeluaranModalLabel">Tambah Pengeluaran</h5>
+                        <h5 class="modal-title" id="tambahPemasukanModalLabel">Tambah Pemasukan</h5>
                         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                           <span aria-hidden="true">&times;</span>
                         </button>
                       </div>
                       <div class="modal-body">
                         <div class="form-group">
-                          <label for="jumlah_pengeluaran">Jumlah Pengeluaran</label>
-                          <input type="number" name="jumlah_pengeluaran" id="jumlah_pengeluaran" required class="form-control" placeholder="Rp.">
+                          <label for="jumlah_pemasukan">Jumlah Pemasukan</label>
+                          <input type="number" name="jumlah_pemasukan" id="jumlah_pemasukan" required class="form-control" placeholder="Rp.">
                         </div>
                         <div class="form-group">
                           <label for="keterangan">Keterangan</label>
@@ -67,7 +66,7 @@
                       </div>
                       <div class="modal-footer">
                         <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-fw fa-times"></i> Batal</button>
-                        <button type="submit" name="btnAddPengeluaran" class="btn btn-primary"><i class="fas fa-fw fa-save"></i> Tambah</button>
+                        <button type="submit" name="btnAddPemasukan" class="btn btn-primary"><i class="fas fa-fw fa-save"></i> Tambah</button>
                       </div>
                     </div>
                   </form>
@@ -92,7 +91,7 @@
                     <th>No.</th>
                     <th>Username</th>
                     <th>Keterangan</th>
-                    <th>Jumlah Pengeluaran</th>
+                    <th>Jumlah Pemasukan</th>
                     <?php if ($_SESSION['id_jabatan'] !== '3'): ?>
                       <th>Aksi</th>
                     <?php endif ?>
@@ -100,46 +99,46 @@
                 </thead>
                 <tbody>
                   <?php $i = 1; ?>
-                  <?php foreach ($pengeluaran as $dp): ?>
+                  <?php foreach ($pemasukan as $dp): ?>
                     <tr>
                       <td><?= $i++; ?></td>
                       <td><?= $dp['username']; ?></td>
                       <td><?= $dp['keterangan']; ?></td>
-                      <td>Rp. <?= number_format($dp['jumlah_pengeluaran']); ?></td>
+                      <td>Rp. <?= number_format($dp['jumlah_pemasukan']); ?></td>
                       <?php if ($_SESSION['id_jabatan'] !== '3'): ?>
                         <td>
-                          <a href="" class="badge badge-success" data-toggle="modal" data-target="#editPengeluaranModal<?= $dp['id_pengeluaran']; ?>"><i class="fas fa-fw fa-edit"></i> Ubah</a>
-                          <div class="modal fade text-left" id="editPengeluaranModal<?= $dp['id_pengeluaran']; ?>" tabindex="-1" role="dialog" aria-labelledby="editPengeluaranModalLabel<?= $dp['id_pengeluaran']; ?>" aria-hidden="true">
+                          <a href="" class="badge badge-success" data-toggle="modal" data-target="#editPemasukanModal<?= $dp['id_pemasukan']; ?>"><i class="fas fa-fw fa-edit"></i> Ubah</a>
+                          <div class="modal fade text-left" id="editPemasukanModal<?= $dp['id_pemasukan']; ?>" tabindex="-1" role="dialog" aria-labelledby="editPemasukanModalLabel<?= $dp['id_pemasukan']; ?>" aria-hidden="true">
                             <div class="modal-dialog" role="document">
                               <form method="post">
-                                <input type="hidden" name="id_pengeluaran" value="<?= $dp['id_pengeluaran']; ?>">
+                                <input type="hidden" name="id_pemasukan" value="<?= $dp['id_pemasukan']; ?>">
                                 <div class="modal-content">
                                   <div class="modal-header">
-                                    <h5 class="modal-title" id="editPengeluaranModalLabel<?= $dp['id_pengeluaran']; ?>">Ubah Pengeluaran</h5>
+                                    <h5 class="modal-title" id="editPemasukanModalLabel<?= $dp['id_pemasukan']; ?>">Ubah Pemasukan</h5>
                                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                       <span aria-hidden="true">&times;</span>
                                     </button>
                                   </div>
                                   <div class="modal-body">
                                     <div class="form-group">
-                                      <label for="jumlah_pengeluaran<?= $dp['id_pengeluaran']; ?>">Jumlah Pengeluaran</label>
-                                      <input type="number" name="jumlah_pengeluaran" id="jumlah_pengeluaran<?= $dp['id_pengeluaran']; ?>" required class="form-control" placeholder="Rp." value="<?= $dp['jumlah_pengeluaran']; ?>">
+                                      <label for="jumlah_pemasukan<?= $dp['id_pemasukan']; ?>">Jumlah Pemasukan</label>
+                                      <input type="number" name="jumlah_pemasukan" id="jumlah_pemasukan<?= $dp['id_pemasukan']; ?>" required class="form-control" placeholder="Rp." value="<?= $dp['jumlah_pemasukan']; ?>">
                                     </div>
                                     <div class="form-group">
-                                      <label for="keterangan<?= $dp['id_pengeluaran']; ?>">Keterangan</label>
-                                      <textarea name="keterangan" id="keterangan<?= $dp['id_pengeluaran']; ?>" required class="form-control"><?= $dp['keterangan']; ?></textarea>
+                                      <label for="keterangan<?= $dp['id_pemasukan']; ?>">Keterangan</label>
+                                      <textarea name="keterangan" id="keterangan<?= $dp['id_pemasukan']; ?>" required class="form-control"><?= $dp['keterangan']; ?></textarea>
                                     </div>
                                   </div>
                                   <div class="modal-footer">
                                     <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-fw fa-times"></i> Batal</button>
-                                    <button type="submit" name="btnEditPengeluaran" class="btn btn-primary"><i class="fas fa-fw fa-save"></i> Ubah</button>
+                                    <button type="submit" name="btnEditPemasukan" class="btn btn-primary"><i class="fas fa-fw fa-save"></i> Ubah</button>
                                   </div>
                                 </div>
                               </form>
                             </div>
                           </div>
                           <?php if ($_SESSION['id_jabatan'] !== '3'): ?>
-                            <a href="hapus_pengeluaran.php?id_pengeluaran=<?= $dp['id_pengeluaran']; ?>" class="badge badge-danger btn-delete" data-nama="Pengeluaran : Rp. <?= number_format($dp['jumlah_pengeluaran']); ?> | <?= $dp['keterangan']; ?>"><i class="fas fa-fw fa-trash"></i> Hapus</a>
+                            <a href="hapus_pemasukan.php?id_pemasukan=<?= $dp['id_pemasukan']; ?>" class="badge badge-danger btn-delete" data-nama="Pemasukan : Rp. <?= number_format($dp['jumlah_pemasukan']); ?> | <?= $dp['keterangan']; ?>"><i class="fas fa-fw fa-trash"></i> Hapus</a>
                           <?php endif ?>
                         </td>
                       <?php endif ?>

@@ -5,14 +5,14 @@
 
   if (isset($_POST['btnEditProfile'])) {
   	if (editUser($_POST) > 0) {
-  		setAlert("Your Profile has been changed", "Successfully changed", "success");
+  		setAlert("Profile Berhasil Diubah", "Berhasil Mengubah Data", "success");
 		header("Location: profile.php");
   	} 
   }
 
   if (isset($_POST['btnChangePassword'])) {
   	if (changePassword($_POST) > 0) {
-  		setAlert("Your Password has been changed", "Successfully changed", "success");
+  		setAlert("Password Berhasil Diubah", "Berhasil Mengubah Data", "success");
 		header("Location: profile.php");
   	}
   }
@@ -57,11 +57,11 @@
 		</div>
 		<!-- Button trigger modal -->
 		<button type="button" class="btn btn-success" data-toggle="modal" data-target="#editProfileModal">
-		  <i class="fas fa-fw fa-edit"></i> Edit
+		  <i class="fas fa-fw fa-edit"></i> Ubah
 		</button>
 		
 		<button type="button" class="btn btn-danger" data-toggle="modal" data-target="#changePasswordModal">
-		  <i class="fas fa-fw fa-lock"></i> Change Password
+		  <i class="fas fa-fw fa-lock"></i> Ubah Password
 		</button>
 	
 		<!-- Modal -->
@@ -71,7 +71,7 @@
                 <input type="hidden" name="id_user" value="<?= $dataUser['id_user']; ?>">
 		    	<div class="modal-content">
 			      <div class="modal-header">
-			        <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+			        <h5 class="modal-title" id="editProfileModalLabel">Ubah Profile</h5>
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			          <span aria-hidden="true">&times;</span>
 			        </button>
@@ -93,8 +93,8 @@
 		     		</div>
 			      </div>
 			      <div class="modal-footer">
-			        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-fw fa-times"></i> Close</button>
-			        <button type="submit" name="btnEditProfile" class="btn btn-primary"><i class="fas fa-fw fa-save"></i> Save</button>
+			        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-fw fa-times"></i> Batal</button>
+			        <button type="submit" name="btnEditProfile" class="btn btn-primary"><i class="fas fa-fw fa-save"></i> Ubah</button>
 			      </div>
 			    </div>
 		    </form>
@@ -107,28 +107,28 @@
                 <input type="hidden" name="id_user" value="<?= $dataUser['id_user']; ?>">
 		    	<div class="modal-content">
 			      <div class="modal-header">
-			        <h5 class="modal-title" id="changePasswordModalLabel">Change Password</h5>
+			        <h5 class="modal-title" id="changePasswordModalLabel">Ubah Password</h5>
 			        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
 			          <span aria-hidden="true">&times;</span>
 			        </button>
 			      </div>
 			      <div class="modal-body">
 					<div class="form-group">
-                        <label for="old_password">Old Password</label>
+                        <label for="old_password">Password Sebelumnya</label>
                         <input type="password" minlength="6" name="old_password" id="old_password" class="form-control" required>
                     </div>
 					<div class="form-group">
-                        <label for="new_password">Password</label>
+                        <label for="new_password">Password Baru</label>
                         <input type="password" minlength="6" name="new_password" id="new_password" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label for="new_password_verify">Password Verify</label>
+                        <label for="new_password_verify">Konfirmasi Password Baru</label>
                         <input type="password" minlength="6" name="new_password_verify" id="new_password_verify" class="form-control" required>
                     </div>
 			      </div>
 			      <div class="modal-footer">
-			        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-fw fa-times"></i> Close</button>
-			        <button type="submit" name="btnChangePassword" class="btn btn-primary"><i class="fas fa-fw fa-save"></i> Save</button>
+			        <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-fw fa-times"></i> Batal</button>
+			        <button type="submit" name="btnChangePassword" class="btn btn-primary"><i class="fas fa-fw fa-save"></i> Ubah</button>
 			      </div>
 			    </div>
 		    </form>
@@ -140,11 +140,7 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2020 By Andri Firman Saputra.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 1.0.0
-    </div>
+    <strong> &copy; UAS PEMROGRAMAN WEBSITE KELOMPOK 5.</strong>
   </footer>
 
 </div>

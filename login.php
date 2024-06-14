@@ -16,11 +16,11 @@
   			];
   			header("Location: index.php");
   		} else {
-			setAlert("Password your insert is false!", "Check your Password BACK!", "error");
+			setAlert("Password Yang Kamu Masukan Salah!", "Periksa Kembali Password Anda!", "error");
 			header("Location: login.php");
 	  	}
   	} else {
-		setAlert("Username is not registered!", "Check your Username BACK!", "error");
+		setAlert("Username Tidak Terdaftar!", "Periksa Kembali Username Anda!", "error");
 		header("Location: login.php");
   	}
   }
@@ -42,7 +42,7 @@
 	    min-height: 100vh;
 	    background-size: cover;
 	    background-repeat: no-repeat;
-	    background-image: url(assets/img/img_properties/bg-login.jpg);
+	    background-image: url(assets/img/login-bg.jpg);
 	}
 	
   	.container {
@@ -75,14 +75,6 @@
 		</div>
 	</div>
 
-	<footer style="position: absolute; bottom: 0; width: 100%; text-align: center;">
-		<div style="background-color: transparent;" class="container-fluid mt-5">
-			<div class="row justify-content-center">
-				<div class="col-lg text-center text-white pt-4 pb-2">
-					<p>&copy; Copyright 2020. By Andri Firman Saputra. All Right Reserved.</p>
-				</div>
-			</div>
-		</div>
-	</footer>
+	
 </body>
 </html>

@@ -4,14 +4,14 @@
   $jabatan = mysqli_query($conn, "SELECT * FROM jabatan");
   if (isset($_POST['btnEditJabatan'])) {
     if (editJabatan($_POST) > 0) {
-      setAlert("Jabatan has been changed", "Successfully changed", "success");
+      setAlert("Jabatan Berhasil Diubah", "Berhasil Mengubah Data", "success");
       header("Location: jabatan.php");
     }
   }
 
   if (isset($_POST['btnTambahJabatan'])) {
     if (addJabatan($_POST) > 0) {
-      setAlert("Jabatan has been added", "Successfully added", "success");
+      setAlert("Jabatan Telah Ditambahkan", "Berhasil Menambahkan Data", "success");
       header("Location: jabatan.php");
     }
   }
@@ -59,8 +59,8 @@
                       </div>
                     </div>
                     <div class="modal-footer">
-                      <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-fw fa-times"></i> Close</button>
-                      <button type="submit" class="btn btn-primary" name="btnTambahJabatan"><i class="fas fa-fw fa-save"></i> Save</button>
+                      <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-fw fa-times"></i> Batal</button>
+                      <button type="submit" class="btn btn-primary" name="btnTambahJabatan"><i class="fas fa-fw fa-save"></i> Tambah</button>
                     </div>
                   </div>
                 </form>
@@ -78,7 +78,7 @@
         <div class="row">
           <div class="col-lg">
             <div class="table-responsive">
-              <table class="table table-striped table-hover table-bordered" id="table_id">
+              <table class="table table-striped table-hover table-bordered" id="table_id" >
                 <thead>
                   <tr>
                     <th>No</th>
@@ -117,8 +117,8 @@
                                     </div>
                                   </div>
                                   <div class="modal-footer">
-                                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-fw fa-times"></i> Close</button>
-                                    <button type="submit" name="btnEditJabatan" class="btn btn-primary"><i class="fas fa-fw fa-save"></i> Save</button>
+                                    <button type="button" class="btn btn-danger" data-dismiss="modal"><i class="fas fa-fw fa-times"></i> Batal</button>
+                                    <button type="submit" name="btnEditJabatan" class="btn btn-primary"><i class="fas fa-fw fa-save"></i> Ubah</button>
                                   </div>
                                 </div>
                               </form>
@@ -140,11 +140,7 @@
   </div>
   <!-- /.content-wrapper -->
   <footer class="main-footer">
-    <strong>Copyright &copy; 2020 By Andri Firman Saputra.</strong>
-    All rights reserved.
-    <div class="float-right d-none d-sm-inline-block">
-      <b>Version</b> 1.0.0
-    </div>
+    <strong> &copy; UAS PEMROGRAMAN WEBSITE KELOMPOK 5.</strong>
   </footer>
 
 </div>
